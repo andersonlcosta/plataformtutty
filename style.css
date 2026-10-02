@@ -1,0 +1,296 @@
+/* =======================================================
+   CONFIGURAÇÕES GERAIS DO SEU LAYOUT ORIGINAL
+========================================================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding-bottom: 140px; /* Evita que a barra inferior cubra os cards */
+}
+
+.titulo-pagina {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Container que define a perspectiva 3D do efeito */
+.flashcard-container {
+    width: 350px;
+    height: 450px;
+    perspective: 1000px; /* Cria o efeito de profundidade */
+}
+
+/* O Card em si, que vai girar */
+.flashcard {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease; /* Velocidade da rotação */
+    cursor: pointer;
+}
+
+/* Ativa a rotação quando passa o mouse */
+.flashcard-container:hover .flashcard {
+    transform: rotateY(180deg);
+}
+
+/* Configuração comum para as duas faces */
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Esconde a parte de trás da face oposta */
+    border-radius: 25px;
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+/* Estilização da FRENTE (Inspirado no slide azul) */
+.frente {
+    background-color: #1e468a; /* Azul escuro */
+    color: white;
+}
+
+.frente h2 {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.frente p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+/* Estilização do VERSO (Inspirado no slide cinza) */
+.verso {
+    background-color: #d1d5db; /* Cinza claro */
+    color: #1f2937; /* Texto escuro */
+    transform: rotateY(180deg); /* Já começa invertido no espaço 3D */
+}
+
+.verso h2 {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    color: #111827;
+    margin-bottom: 20px;
+}
+
+.verso p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Elementos Visuais Extra (Ícones) */
+.icone {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+/* =======================================================
+   ESTRUTURAS NOVAS DE INTEGRAÇÃO (COMPLETAS)
+========================================================== */
+
+/* Barra superior com a sua imagem barra.png carregada */
+.barra-topo-imagem {
+    width: 100%;
+    height: 280px; 
+    background-image: url('barra.png'); /* Definição da sua imagem fixa */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+/* Container do Botão Alinhado à Esquerda */
+.tutor-superior-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 15px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.btn-tutty-superior {
+    background-color: #059669;
+    color: white;
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-tutty-superior:hover {
+    background-color: #047857;
+    transform: scale(1.03);
+}
+
+/* Menu de navegação por abas horizontais */
+.menu-categorias {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 15px;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.btn-menu {
+    background-color: #ffffff;
+    color: #1e468a;
+    border: 2px solid #1e468a;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.btn-menu:hover, .btn-menu.ativo {
+    background-color: #1e468a;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-voltar-inicio {
+    background-color: #e2e8f0;
+    color: #475569;
+    border: 2px solid #cbd5e1;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: none;
+}
+
+.btn-voltar-inicio:hover {
+    background-color: #cbd5e1;
+    color: #1f2937;
+}
+
+/* Área de visualização dos Cards */
+.secao-cards {
+    display: none;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.secao-cards.ativa {
+    display: flex;
+}
+
+/* Botões Internos dos Versos (Aulas) */
+.btn-link-card {
+    margin-top: 15px;
+    background-color: #1e468a;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+
+.btn-link-card:hover {
+    background-color: #113266;
+}
+
+/* Barra Inferior Fixa */
+.barra-inferior {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 110px;
+    background-color: #1f2937;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    box-sizing: border-box;
+    z-index: 1000;
+    border-top: 4px solid #059669;
+}
+
+.inferior-esquerda {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.inferior-img-box {
+    width: 70px;
+    height: 70px;
+    background-color: #374151;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid #4b5563;
+}
+
+.inferior-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.inferior-texto {
+    font-size: 1rem;
+    max-width: 500px;
+    line-height: 1.5;
+}
+
+.btn-tutor-ia {
+    background-color: #059669; 
+    color: white;
+    text-decoration: none;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 14px rgba(5, 150, 105, 0.4);
+    transition: all 0.2s ease;
+}
+
+.btn-tutor-ia:hover {
+    background-color: #047857;
+    transform: scale(1.05);
+}

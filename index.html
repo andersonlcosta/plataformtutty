@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Tutty - Sistema de Flashcards</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+    function tocarSom() {
+        const som = document.getElementById('som-flip');
+        if (som) {
+            som.currentTime = 0;
+            let executar = som.play();
+            if (executar !== undefined) {
+                executar.catch(err => console.log("BORA APRENDER!"));
+            }
+        }
+    }
+
+    function alternarCategoria(categoriaId) {
+        const secoes = document.querySelectorAll('.secao-cards');
+        secoes.forEach(secao => secao.classList.remove('ativa'));
+        
+        const botoes = document.querySelectorAll('.btn-menu');
+        botoes.forEach(botao => botao.classList.remove('ativo'));
+        
+        const btnVoltar = document.getElementById('btn-voltar');
+
+        if (categoriaId === 'inicio') {
+            secoes.forEach(secao => secao.classList.add('ativa'));
+            btnVoltar.style.display = 'none';
+        } else {
+            document.getElementById(categoriaId).classList.add('ativa');
+            event.currentTarget.classList.add('ativo');
+            btnVoltar.style.display = 'inline-block';
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        document.body.addEventListener('click', () => {
+            const som = document.getElementById('som-flip');
+            if (som) som.load();
+        }, { once: true });
+    });
+    </script>
+</head>
+<body>
+
+    <audio id="som-flip" src="som-flip.mp3" preload="auto"></audio>
+
+    <!-- Barra do Topo que renderiza a imagem barra.png definida no CSS -->
+    <div class="barra-topo-imagem"></div>
+
+    <!-- Botão de Acesso do TUTTY-IA Superior Esquerdo -->
+    <div class="tutor-superior-container">
+        <a href="https://tutty-ia.onrender.com/" target="_blank" class="btn-tutty-superior">🤖 TUTTY-IA</a>
+    </div>
+
+    <h1 class="titulo-pagina">Portal de Aprendizado Interativo</h1>
+
+    <div class="menu-categorias">
+        <button id="btn-voltar" class="btn-voltar-inicio" onclick="alternarCategoria('inicio')">↩️ Voltar ao Início</button>
+        <button class="btn-menu" onclick="alternarCategoria('ensino-medio')">Ensino Médio (5 Cards)</button>
+        <button class="btn-menu" onclick="alternarCategoria('carreira')">Carreira, Tecnologia & Futuro (3 Cards)</button>
+        <button class="btn-menu" onclick="alternarCategoria('agentes')">Agentes de Integração (5 Cards)</button>
+        <button class="btn-menu" onclick="alternarCategoria('ensino-fundamental')">Ensino Fundamental (8 Cards)</button>
+    </div>
+
+    <!-- ================= CATEGORIA 1: ENSINO MÉDIO ================= -->
+    <div id="ensino-medio" class="secao-cards ativa">
+        <div class="flashcard-container" onmouseenter="tocarSom()">
+            <div class="flashcard">
+                <div class="face frente"><div class="icone">🧪</div><h2>Química</h2><p>Passe o mouse para ver o conteúdo.</p></div>
+                <div class="face verso"><h2>Química</h2><p>Estudo dos elementos, ligações químicas e reações fundamentais.</p><a href="URL_AQUI" target="_blank" class="btn-link-card">Acessar Aulas</a></div>
+            </div>
+        </div>
+        <div class="flashcard-container" onmouseenter="tocarSom()">
+            <div class="flashcard">
+                <div class="face frente"><div class="icone">🍎</div><h2>Física</h2><p>Passe o mouse para ver o conteúdo.</p></div>
+                <div class="face verso"><h2>Física</h2><p>Mecânica, termodinâmica, óptica, ondas e fenômenos da natureza.</p><a href="URL_AQUI" target="_blank" class="btn-link-card">Acessar Aulas</a></div>
+            </div>
+        </div>
+        <div class="flashcard-container" onmouseenter="tocarSom()">
+            <div class="flashcard">
+                <div class="face frente"><div class="icone">🧬</div><h2>Biologia</h2><p>Passe o mouse para ver o conteúdo.</p></div>
+                <div class="face verso"><h2>Biologia</h2><p>Compreensão da vida, genética, ecossistemas e evolução humana.</p><a href="URL_AQUI" target="_blank" class="btn-link-card">Acessar Aulas</a></div>
+            </div>
+        </div>
+        <div class="flashcard-container" onmouseenter="tocarSom()">
+            <div class="flashcard">
+                <div class="face frente"><div class="icone">👥</div><h2>Sociologia</h2><p>Passe o mouse para ver o conteúdo.</p></div>
+                <div class="face verso"><h2>Sociologia</h2><p>Análise das estruturas sociais, culturas e comportamentos coletivos.</p><a href="URL_AQUI" target="_blank" class="btn-link-card">Acessar Aulas</a></div>
+            </div>
+        </div>
+        <div class="flashcard-container" onmouseenter="tocarSom()">
+            <div class="flashcard">
+                <div class="face frente"><div class="icone">🧠</div><h2>Filosofia</h2><p>Passe o mouse para ver o conteúdo.</p></div>
+                <div class="face verso"><h2>Filosofia</h2><p>Desenvolvimento do pensamento crítico, ética e lógica existencial.</p><a href="URL_AQUI" target="_blank" class="btn-link-card">Acessar Aulas</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= CATEGORIA 2: CARREIRA, TECNOLOGIA & FUTURO ================= -->
+    <div id="carreira" class="secao-cards ativa">
+        <div class="flashcard-container" onmouseenter="tocarSom()">
+            <div class="flashcard">
+                <div class="face frente"><div class="icone">💻</div><h2>Programação</h2><p>Passe o mouse para ver o conteúdo.</p></div>
+                <div class="face verso"><h2>Programação</h2><p>Aprenda a criar lógicas de desenvolvimento de software e algoritmos.</p><a href="URL_AQUI" target="_blank" class="btn-link-card">Acessar Aulas</a></div>
+            </div>
+        </div>
+        <div class="flashcard-container" onmouseenter="tocarSom()">
+            <div class="flashcard">
+                <div class="face frente"><div class="icone">🚀</div><h2>Empreendedorismo</h2><p>Passe o mouse para ver o conteúdo.</p></div>
+                <div class="face verso"><h2>Empreendedorismo</h2><p>Desenvolva uma visão de negócios, liderança e inovação no mercado.</p><a href="URL_AQUI" target="_blank" class="btn-link-card">Acessar Aulas</a></div>
+            </div>
+        </div>
+        <div class="flashcard-container" onmouseenter="tocarSom()">
+            <div class="flashcard">
+                <div class="face frente"><div class="icone">💼</div><h2>Estágio & Jovem Aprendiz</h2><p>Passe o mouse para ver o conteúdo.</p></div>
+                <div class="face verso"><h2>Estágio & Aprendiz</h2><p>Preparação para ingressar no mercado corporativo e regras iniciais.</p><a href="URL_AQUI" target="_blank" class="btn-link-card">Acessar Aulas</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= CATEGORIA 3: AGENTES DE INTEGRAÇÃO ================= -->
+    <div id="agentes" class="secao-cards ativa">
+        <div class="flashcard-container" onmouseenter="tocarSom()">
+            <div class="flashcard">
+                <div class="face frente"><div class="icone">🤝</div><h2>CIEE</h2><p>Passe o mouse para ver o conteúdo.</p></div>
+                <div class="face verso"><h2>CIEE</h2><p>Fazem o meio de campo entre as escolas/universidades e as grandes empresas.</p><a href="https://ciee.org.br" target="_blank" class="btn-link-card">Acessar Portal</a></div>
+            </div>
+        </div>
+        <div class="flashcard-container" onmouseenter="tocarSom()">
+            <div class="flashcard">
+                <div class="face frente"><div class="icone">🎯</div><h2>Nube</h2><p>Passe o mouse para ver o conteúdo.</p></div>
+                <div class="face verso"><h2>Nube</h2><p>Focado fortemente em estágios para ensino médio, técnico e superior. Cadastro gratuito.</p><a href="https://nube.com.br" target="_blank" class="btn-link-card">Acessar Portal</a></div>
+            </div>
+        </div>
+        <div class="flashcard-container" onmouseenter="tocarSom()">
+            <div class="flashcard">
+                <div class="face frente"><div class="icone">🎓</div><h2>Espro</h2><p>Passe o mouse para ver o conteúdo.</p></div>
+                <div class="face verso"><h2>Espro</h2><p>Foco específico na formação e inclusão de Jovens Aprendizes nas empresas.</p><a href="URL_AQUI" target="_blank" class="btn-link-card">Acessar Portal</a></div>
+            </div>
+        </div>
+        <div class="flashcard-container" onmouseenter="tocarSom()">
+            <div class="flashcard">
+                <div class="face frente"><div class="icone">🏢</div><h2>Companhia de Estágios</h2><p>Passe o mouse para ver o conteúdo.</p></div>
+                <div class="face verso"><h2>Cia de Estágios</h2><p>Gerencia programas de grandes multinacionais (como Samsung, Stellantis e Mercado Livre).</p><a href="URL_AQUI" target="_blank" class="btn-link-card">Acessar Portal</a></div>
+            </div>
+        </div>
+        <div class="flashcard-container" onmouseenter="tocarSom()">
+            <div class="flashcard">
+                <div class="face frente"><div class="icone">🏭</div><h2>IEL</h2><p>Passe o mouse para ver o conteúdo.</p></div>
+                <div class="face verso"><h2>IEL</h2><p>Ligado à CNI, foca muito em vagas de estágio em indústrias e empresas parceiras.</p><a href="URL_AQUI" target="_blank" class="btn-link-card">Acessar Portal</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= CATEGORIA 4: ENSINO FUNDAMENTAL ================= -->
+    <div id="ensino-fundamental" class="secao-cards ativa">
+        <div class="flashcard-container" onmouseenter="tocarSom()">
+            <div class="flashcard">
+                <div class="face frente"><div class="icone">📚</div><h2>Língua Portuguesa</h2><p>Passe o mouse para ver o conteúdo.</p></div>
